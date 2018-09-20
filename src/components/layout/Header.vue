@@ -1,15 +1,17 @@
 <template>
-  <div class="home-page text-center">
-    <h1>Hello World!</h1>
-  </div>
+  <header id="app-header">
+    <h1>Pizza Ovens</h1>
+  </header>
 </template>
 
 <script>
 export default {
-  name: 'Home'
+  name: 'Header'
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+// #app-header{
+// }
 </style>
