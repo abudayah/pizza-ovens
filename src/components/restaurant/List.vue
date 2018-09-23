@@ -1,14 +1,27 @@
 <template>
   <div class="list">
-    Restaurant List
+    <template v-if="restaurants.length">
+      <restaurant-item
+        v-for="(item, key) in restaurants"
+        v-bind:restaurant="item"
+        v-bind:key="key">
+      </restaurant-item>
+    </template>
+    <template v-else>
+      Loading...
+    </template>
   </div>
 </template>
 
 <script>
 import RestaurantService from '@/services/restaurant.service'
+import RestaurantItem from './Item'
 
 export default {
   name: 'RestaurantList',
+  components: {
+    RestaurantItem
+  },
   data () {
     return {
       restaurants: []
@@ -22,7 +35,7 @@ export default {
   methods: {
     getList () {
       RestaurantService.query().then(response => {
-        console.log(response.data.data)
+        this.restaurants = response.data.data
       })
     }
   }

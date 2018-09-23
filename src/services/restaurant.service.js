@@ -7,7 +7,7 @@ const RestaurantService = {
   },
 
   get (id) {
-
+    return ApiService.get(API_URL + '/restaurants/' + id)
   }
 }
 

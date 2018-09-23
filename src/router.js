@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import RestaurantsList from '@/components/restaurant/List'
-// import RestaurantsView from '@/components/restaurant/View'
+import RestaurantList from '@/components/restaurant/List'
+import RestaurantView from '@/components/restaurant/View'
 
 Vue.use(Router)
 
@@ -10,14 +10,14 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'RestaurantsList',
-      component: RestaurantsList
+      name: 'RestaurantList',
+      component: RestaurantList
+    },
+    {
+      path: '/restaurant/:id',
+      name: 'RestaurantView',
+      component: RestaurantView,
+      props: true
     }
-    // {
-    //   path: '/restaurant/:id',
-    //   name: 'RestaurantView',
-    //   component: RestaurantView,
-    //   props: true
-    // }
   ]
 })
