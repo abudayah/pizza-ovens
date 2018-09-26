@@ -8,13 +8,15 @@ Vue.use(Router)
 
 export default new Router({
   mode: 'history',
+  linkExactActiveClass: 'is-active',
   routes: [
     {
       path: '/',
       name: 'RestaurantList',
       component: RestaurantList,
       props: (route) => ({
-        sortByQuery: route.query.sortBy
+        sortByQuery: route.query.sortBy,
+        filterByCategory: route.query.filterBy
       })
     },
     {

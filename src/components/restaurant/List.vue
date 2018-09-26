@@ -1,52 +1,90 @@
 <template>
-  <div class="container">
-    <template v-if="restaurants.length">
-      <div class="restaurant-list">
+  <div class="container-wide">
+    <div class="row">
+      <div class="col-md-3">
         
-        <div class="filters">
-          <select name="sortBy" @change="handleSortBy(sortType)" v-model="sortType">
-            <option value="">Sort by..</option>
-            <option v-for="(option, key) in sortOptions" :key="key" :value="key">{{option.text}}</option>
-          </select>
-        </div>
-        
-        <restaurant-item v-for="(item, key) in restaurants"
-          :id="item.id"
-          :name="item.general.name"
-          :logoUri="item.general.logo_uri"
-          :categories="item.general.categories"
-          :rating="item.rating"
-          :key="key">
-        </restaurant-item>
+        <template v-if="filters.length">
+          <Filters :filters="filters" />
+        </template>
+        <template v-else>
+          Loading...
+        </template>
         
       </div>
-    </template>
-    <template v-else>
-      Loading...
-    </template>
+      <div class="col-md-9">
+        <div class="box">
+          
+          <template v-if="restaurants.length">
+            <div class="restaurant-list">
+              
+              <div class="filters">
+                <div class="row">
+                  <div class="col-md-9">
+                    <div class="results-total">
+                      We found <b>{{this.restaurants.length}}</b> restaurant(s) for you
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <select name="sortBy" @change="sortResults(sortType)" v-model="sortType">
+                      <option value="">Sort by..</option>
+                      <option v-for="(option, key) in sortOptions" :key="key" :value="key">{{option.text}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              
+              <restaurant-item v-for="(item, key) in restaurants"
+                :id="item.id"
+                :name="item.general.name"
+                :logoUri="item.general.logo_uri"
+                :categories="item.general.categories"
+                :rating="item.rating"
+                :key="key">
+              </restaurant-item>
+              
+            </div>
+          </template>
+          <template v-else>
+            Loading...
+          </template>
+          
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
 import RestaurantService from '@/services/restaurant.service'
 import RestaurantItem from './Item'
+import Filters from './Filters'
+import helpers from '@/helpers'
 
 export default {
   name: 'RestaurantList',
   components: {
-    RestaurantItem
+    RestaurantItem,
+    Filters
   },
   props: {
     sortByQuery: {
       type: String,
       required: true,
       default: 'nameASC'
+    },
+    filterByCategory: {
+      type: String,
+      required: true,
+      default: ''
     }
   },
   
   data () {
     return {
+      filters: [],
       restaurants: [],
+      response: [],
       sortType: this.sortByQuery,
       sortOptions: {
         nameASC: {
@@ -77,31 +115,59 @@ export default {
     this.unsortedData = []
     this.getList()
   },
+  
+  watch: {
+    '$route.query': 'filterResults'
+  },
 
   methods: {
     getList () {
       RestaurantService.query().then(response => {
-        this.unsortedData = response.data.data
-        this.handleSortBy(false)
+        this.response = response
+        this.unsortedData = this.response.data.data
+        this.getFilters()
+        this.filterResults(false)
       })
     },
     
-    handleSortBy (fresh = true) {
+    filterResults (reset = true) {
+      if (reset) {
+        this.resetResults()
+      }
+      if (this.filterByCategory) {
+        let filteredData = this.unsortedData.filter((item, index, self) => {
+          return (item.general.categories[0].indexOf(this.$route.query.filterBy.toLowerCase()) >= 0)
+        })
+        
+        this.unsortedData = filteredData
+      }
+      this.sortResults(false)
+    },
+
+    sortResults (fresh = true) {
       if (this.sortType && this.sortOptions.hasOwnProperty(this.sortType)) {
         const sortOption = this.sortOptions[this.sortType]
         this.restaurants = this[sortOption.method](sortOption.order)
         
         if (fresh) {
-          this.$router.push({
+          const route = {
             path: '/',
             query: {
               sortBy: this.sortType
             }
-          })
+          }
+          if (this.filterByCategory.length) {
+            route.query.filterBy = this.filterByCategory
+          }
+          this.$router.push(route)
         }
       } else {
         this.restaurants = this.unsortedData
       }
+    },
+    
+    resetResults () {
+      this.unsortedData = this.response.data.data
     },
 
     sortByName (order = 'ASC') {
@@ -132,7 +198,20 @@ export default {
       })
       
       return sortedData
+    },
+    
+    getFilters () {
+      if (this.unsortedData) {
+        let allFilters = []
+        this.unsortedData.forEach(item => {
+          if (item.general.categories.length) {
+            item.general.categories[0].split(',').forEach(category => allFilters.push(helpers.ucfirst(category)))
+          }
+        })
+        this.filters = helpers.uniqueArray(allFilters)
+      }
     }
+
   }
 }
 </script>
@@ -140,9 +219,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .restaurant-list{
+  .results-total{
+    text-align: left;
+    line-height: 34px;
+  }
   .filters{
     text-align: right;
-    margin-bottom: 12px;
+    border-bottom: $global-border;
+    padding-bottom: 12px;
   }
 }
 </style>

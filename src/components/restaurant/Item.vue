@@ -1,18 +1,32 @@
 <template>
-  <router-link class="item row" :to="{ name: 'RestaurantView', params: { id: this.id }}">
-    <div class="item--logo">
-      <img :src="getlogo" :alt="name">
-    </div>
-    <div class="item--content">
-      <h2>{{ name }}</h2>
-      <p>{{ categoriesList }}</p>
-      <rating-stars :rating='rating' />
+  <router-link class="item" :to="{ name: 'RestaurantView', params: { id: this.id }}">
+    <div class="d-flex">
+      
+      <div class="logo">
+        <img :src="getlogo" width="150" :alt="name">
+      </div>
+      
+      <div class="content d-flex flex-column flex-wrap">
+        <h2>{{ name }}</h2>
+        <p class="categories">{{ categoriesList }}</p>
+        <rating-stars :rating='rating' />
+        <p v-show="randOffer()" class="badge-discount">50% OFF on all orders</p>
+        
+        <ul class="list-pips">
+          <li>Potsdamer Straße 58, 10785 Berlin</li>
+          <li>Avg: 25 mints</li>
+          <li>Avg: 25 mints</li>
+          <li>Delivery: FREE</li>
+        </ul>
+      </div>
+      
     </div>
   </router-link>
 </template>
 
 <script>
 import RatingStars from '../common/Stars'
+import helpers from '@/helpers'
 
 export default {
   name: 'restaurant-item',
@@ -53,13 +67,13 @@ export default {
       return this.logoUri
     },
     categoriesList () {
-      return (this.categories.length) ? this.categories[0].split(',').map(item => this.ucfirst(item)).join(', ') : ''
+      return (this.categories.length) ? this.categories[0].split(',').map(item => helpers.ucfirst(item)).join(' • ') : ''
     }
   },
 
   methods: {
-    ucfirst (string) {
-      return (string.length) ? string.charAt(0).toUpperCase() + string.slice(1) : ''
+    randOffer () {
+      return (Math.floor((Math.random() * 99) + 1) % 3 === 0) ? true : false;
     }
   }
 }
@@ -67,32 +81,47 @@ export default {
 
 <style lang="scss" scoped>
 .item{
-  border: 1px solid #ddd;
-  border-bottom: 2px solid #ddd;
-  margin-bottom: 10px;
-  display: flex;
-  flex-flow: row;
+  color: $black;
+  border-bottom: $global-border;
   text-decoration: none;
-  color: #111;
-  border-radius: 4px;
+  display: block;
+  padding: 12px 0;
+  
+  .categories{
+    margin: 12px 0;
+  }
+  .content{
+    margin-left: 15px;
+  }
+  img {
+    border-radius: 4px;
+  }
+  
+  &:hover{
+    background-color: $light-gray
+  }
+  
+  &:last-child{
+    border: 0 none;
+  }
 
   h2{
     margin: 0
   }
-
-  &:hover{
+  
+  .list-pips{
+    margin-top: auto;
   }
-
-  &--logo{
-    flex-flow: column;
-    display: flex;
-    img {
-      max-width: 160px;
+  
+  .badge{
+    border: 1px solid;
+    padding: 1px 3px;
+    border-radius: 3px;
+    display: inline-block;
+    
+    &-discount{
+      color: red;
     }
-  }
-  &--content{
-    flex-flow: column;
-    padding: 10px 15px;
   }
 }
 </style>

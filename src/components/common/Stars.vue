@@ -1,5 +1,5 @@
 <template>
-  <span class="stars">{{stars}}<span :style="average">{{stars}}</span></span>
+  <span class="stars align-self-start">{{stars}}<span :style="average">{{stars}}</span></span>
 </template>
 
 <script>
@@ -32,7 +32,7 @@ export default {
 .stars{
   position: relative;
   display: inline-block;
-  font-size: 20px;
+  font-size: 18px;
   color: #ccc;
   
   > span {
@@ -40,7 +40,7 @@ export default {
     top: 0;
     left: 0;
     overflow: hidden;
-    color: red;
+    color: $red;
   }
 }
 </style>
