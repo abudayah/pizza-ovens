@@ -1,6 +1,8 @@
 <template>
   <header id="app-header">
-    <h1>Pizza Ovens</h1>
+    <div class="container">
+      <h1>Pizza Ovens</h1>
+    </div>
   </header>
 </template>
 

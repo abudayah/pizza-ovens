@@ -7,11 +7,15 @@ import RestaurantView from '@/components/restaurant/View'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
       name: 'RestaurantList',
-      component: RestaurantList
+      component: RestaurantList,
+      props: (route) => ({
+        sortByQuery: route.query.sortBy
+      })
     },
     {
       path: '/restaurant/:id',
