@@ -11,7 +11,6 @@
         <p class="categories">{{ categoriesFormatted }}</p>
         <rating-stars :rating='rating' />
         <p v-show="randOffer()" class="badge-discount">50% OFF on all orders</p>
-        
         <ul class="list-pips">
           <li>{{addressFormatted}}</li>
           <li>Avg: 25 mints</li>
@@ -79,6 +78,7 @@ export default {
   },
 
   methods: {
+    // Generate randomly dummy offers
     randOffer () {
       return (Math.floor((Math.random() * 99) + 1) % 3 === 0)
     }
@@ -93,27 +93,30 @@ export default {
   text-decoration: none;
   display: block;
   padding: 12px 0;
+  transition: all 250ms ease;
+  
+  &:hover{
+    background-color: $light-gray
+  }
+  &:last-child{
+    border: 0 none;
+  }
   
   .categories{
     margin: 12px 0;
   }
   .content{
     margin-left: 15px;
-  }
-  img {
-    border-radius: 4px;
-  }
-  
-  &:hover{
-    background-color: $light-gray
-  }
-  
-  &:last-child{
-    border: 0 none;
+    
+    > h2{
+      margin: 0
+    }
   }
 
-  h2{
-    margin: 0
+  .logo{
+    > img {
+      border-radius: 4px;
+    }
   }
   
   .list-pips{
@@ -121,11 +124,6 @@ export default {
   }
   
   .badge{
-    border: 1px solid;
-    padding: 1px 3px;
-    border-radius: 3px;
-    display: inline-block;
-    
     &-discount{
       color: red;
     }

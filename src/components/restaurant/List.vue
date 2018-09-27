@@ -1,5 +1,5 @@
 <template>
-  <div class="container-wide">
+  <section class="container-wide">
     <div class="row">
       <div class="col-md-3">
         
@@ -15,7 +15,7 @@
         <div class="box">
           
           <template v-if="restaurants.length">
-            <div class="restaurant-list">
+            <div id="restaurantList" class="restaurant-list">
               
               <div class="filters">
                 <div class="row">
@@ -53,7 +53,7 @@
       </div>
     </div>
 
-  </div>
+  </section>
 </template>
 
 <script>
@@ -68,6 +68,7 @@ export default {
     RestaurantItem,
     Filters
   },
+  
   props: {
     sortByQuery: {
       type: String,
@@ -135,6 +136,7 @@ export default {
       if (reset) {
         this.resetResults()
       }
+      
       if (this.filterByCategory) {
         let filteredData = this.unsortedData.filter((item, index, self) => {
           return (item.general.categories[0].indexOf(this.$route.query.filterBy.toLowerCase()) >= 0)
@@ -169,6 +171,7 @@ export default {
     
     resetResults () {
       this.unsortedData = this.response.data.data
+      window.scrollTo(0, 0)
     },
 
     sortByName (order = 'ASC') {
@@ -217,7 +220,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .restaurant-list{
   .results-total{

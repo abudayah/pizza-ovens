@@ -1,6 +1,7 @@
 <template>
-  <header id="app-header" class="">
+  <header id="app-header">
     <div class="container-wide">
+      
       <div class="d-flex flex-row justify-content-between">
         <div class="align-self-center">
           <router-link class="logo" :to="{ path: '/'}">
@@ -22,6 +23,7 @@
             <li><a href="javascipt:;">Logout</a></li>
           </ul>
         </div>
+        
       </div>
     </div>
   </header>
@@ -30,6 +32,11 @@
 <script>
 export default {
   name: 'Header',
+  data () {
+    return {
+      isFixed: false
+    }
+  },
   computed: {
     logo () {
       return '@/assets/logo.png'
@@ -38,16 +45,16 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 #app-header{
   height: 60px;
   background-color: #fff;
   padding: 12px 0;
-  
-  .current-address{
-    margin-left: 30px;
-  }
+  position: fixed;
+  transition: all 200ms linear;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   
   a {
     color: $black;
@@ -65,6 +72,10 @@ export default {
       color: #ff6161;
       width: 180px;
     }
+  }
+
+  .current-address{
+    margin-left: 30px;
   }
 }
 [data-count] {

@@ -1,8 +1,8 @@
 <template>
   <div id="pizza-ovens-app">
     <Header/>
-    <Hero/>
     <div class="main-content">
+      <Hero/>
       <router-view/>
     </div>
     <Footer/>
@@ -37,23 +37,26 @@ export default {
   background-color: $light-gray;
   font-size: 14px;
 }
+.main-content{
+  padding: 60px 0 40px;
+}
 .container-wide{
   padding: 0 30px;
 }
 .box{
-  border: 1px solid #dedede;
+  border: $global-border;
   background-color: #fff;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.07);
   padding: 15px;
   
   .title{
-    border-bottom: 1px solid #dedede;
+    border-bottom: $global-border;
     margin: 0;
     padding-bottom: 10px;
   }
 }
 input, select {
-  border: 1px solid #dedede;
+  border: $global-border;
   padding: 8px 15px;
   width: 100%;
   height: 34px;
@@ -65,7 +68,7 @@ input, select {
 .list-pips{
   margin: 0;
   padding: 0;
-    
+  
   > li {
     display: inline-block;
     
@@ -87,8 +90,7 @@ input, select {
     }
   }
 }
-[data-label]{
-  
+[data-label] {
   &::before{
     content: attr(data-label);
     font-size: 12px;
