@@ -8,13 +8,12 @@
       
       <div class="content d-flex flex-column flex-wrap">
         <h2>{{ name }}</h2>
-        <p class="categories">{{ categoriesList }}</p>
+        <p class="categories">{{ categoriesFormatted }}</p>
         <rating-stars :rating='rating' />
         <p v-show="randOffer()" class="badge-discount">50% OFF on all orders</p>
         
         <ul class="list-pips">
-          <li>Potsdamer Straße 58, 10785 Berlin</li>
-          <li>Avg: 25 mints</li>
+          <li>{{addressFormatted}}</li>
           <li>Avg: 25 mints</li>
           <li>Delivery: FREE</li>
         </ul>
@@ -55,6 +54,11 @@ export default {
       type: Object,
       required: true,
       default: () => {}
+    },
+    address: {
+      type: Object,
+      required: true,
+      default: () => {}
     }
   },
   
@@ -66,14 +70,17 @@ export default {
     getlogo () {
       return this.logoUri
     },
-    categoriesList () {
+    addressFormatted () {
+      return helpers.formatAddress(this.address)
+    },
+    categoriesFormatted () {
       return (this.categories.length) ? this.categories[0].split(',').map(item => helpers.ucfirst(item)).join(' • ') : ''
     }
   },
 
   methods: {
     randOffer () {
-      return (Math.floor((Math.random() * 99) + 1) % 3 === 0) ? true : false;
+      return (Math.floor((Math.random() * 99) + 1) % 3 === 0)
     }
   }
 }

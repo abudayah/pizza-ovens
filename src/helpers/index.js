@@ -8,7 +8,17 @@ const uniqueArray = (array) => {
   })
 }
 
+const formatAddress = (options = {
+  city: '',
+  street_name: '',
+  street_number: '',
+  zipcode: ''
+}) => {
+  return `${options.street_name} ${options.street_number}, ${options.zipcode} ${options.city}`
+}
+
 export default {
   ucfirst,
-  uniqueArray
+  uniqueArray,
+  formatAddress
 }

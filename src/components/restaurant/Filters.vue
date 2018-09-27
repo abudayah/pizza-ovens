@@ -3,7 +3,7 @@
     <h3 class="title">Fitler by</h3>
     <ul class="list-filters">
       <li><router-link :to="{ path: '/'}">Show All</router-link></li>
-      <li v-for="(category, key) in sortedFilters()" :key="key">
+      <li v-for="(category, key) in sortedFilters" :key="key">
         <router-link :to="{ path: '/', query: { filterBy: category }}">
           {{category}}
         </router-link>
@@ -23,9 +23,10 @@ export default {
     }
   },
   
-  methods: {
+  computed: {
     sortedFilters () {
-      const sortedData = this.filters.sort((a, b) => {
+      let unsortedFilters = this.filters
+      const sortedData = unsortedFilters.sort((a, b) => {
         const valueA = a.toUpperCase()
         const valueB = b.toUpperCase()
         return (valueA < valueB) ? -1 : (valueA > valueB) ? 1 : 0

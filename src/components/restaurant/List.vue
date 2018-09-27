@@ -21,7 +21,7 @@
                 <div class="row">
                   <div class="col-md-9">
                     <div class="results-total">
-                      We found <b>{{this.restaurants.length}}</b> restaurant(s) for you
+                      We found <b>{{restaurants.length}}</b> restaurant(s) for you
                     </div>
                   </div>
                   <div class="col-md-3">
@@ -39,6 +39,7 @@
                 :logoUri="item.general.logo_uri"
                 :categories="item.general.categories"
                 :rating="item.rating"
+                :address="item.address"
                 :key="key">
               </restaurant-item>
               
@@ -83,8 +84,9 @@ export default {
   data () {
     return {
       filters: [],
-      restaurants: [],
       response: [],
+      restaurants: [],
+      unsortedData: [],
       sortType: this.sortByQuery,
       sortOptions: {
         nameASC: {
@@ -112,7 +114,6 @@ export default {
   },
 
   created () {
-    this.unsortedData = []
     this.getList()
   },
   
