@@ -1,5 +1,7 @@
 <template>
-  <span class="stars align-self-start">{{stars}}<span :style="average">{{stars}}</span></span>
+  <span class="stars align-self-start">
+    {{stars}}<span :style="average">{{stars}}</span>
+  </span>
 </template>
 
 <script>
@@ -34,6 +36,7 @@ export default {
   display: inline-block;
   font-size: 18px;
   color: #ccc;
+  cursor: default;
   
   > span {
     position: absolute;

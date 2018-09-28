@@ -1,20 +1,14 @@
 <template>
   <section class="container-wide">
-    <div class="row">
-      <div class="col-md-3">
-        
-        <template v-if="filters.length">
-          <Filters :filters="filters" />
-        </template>
-        <template v-else>
-          Loading...
-        </template>
-        
-      </div>
-      <div class="col-md-9">
-        <div class="box">
+    <template v-if="restaurants.length">
+      <div class="row">
+        <div class="col-md-3">
           
-          <template v-if="restaurants.length">
+          <Filters :filters="filters" />
+          
+        </div>
+        <div class="col-md-9">
+          <div class="box">
             <div id="restaurantList" class="restaurant-list">
               
               <div class="filters">
@@ -42,25 +36,26 @@
                 :address="item.address"
                 :key="key">
               </restaurant-item>
-              
-            </div>
-          </template>
-          <template v-else>
-            Loading...
-          </template>
-          
+            
+          </div>
         </div>
       </div>
     </div>
-
-  </section>
+    
+  </template>
+  <template v-else>
+    <div class="loading"></div>
+  </template>
+  
+</section>
 </template>
 
 <script>
-import RestaurantService from '@/services/restaurant.service'
 import RestaurantItem from './Item'
 import Filters from './Filters'
-import helpers from '@/helpers'
+
+import RestaurantHelper from '@/helpers/restaurant'
+import RestaurantService from '@/services/restaurant.service'
 
 export default {
   name: 'RestaurantList',
@@ -113,7 +108,7 @@ export default {
       }
     }
   },
-
+  
   created () {
     this.getList()
   },
@@ -121,7 +116,7 @@ export default {
   watch: {
     '$route.query': 'filterResults'
   },
-
+  
   methods: {
     getList () {
       RestaurantService.query().then(response => {
@@ -146,7 +141,7 @@ export default {
       }
       this.sortResults(false)
     },
-
+    
     sortResults (fresh = true) {
       if (this.sortType && this.sortOptions.hasOwnProperty(this.sortType)) {
         const sortOption = this.sortOptions[this.sortType]
@@ -173,7 +168,7 @@ export default {
       this.unsortedData = this.response.data.data
       window.scrollTo(0, 0)
     },
-
+    
     sortByName (order = 'ASC') {
       const sortedData = this.unsortedData.sort((a, b) => {
         const valueA = a.general.name.toUpperCase()
@@ -209,13 +204,13 @@ export default {
         let allFilters = []
         this.unsortedData.forEach(item => {
           if (item.general.categories.length) {
-            item.general.categories[0].split(',').forEach(category => allFilters.push(helpers.ucfirst(category)))
+            item.general.categories[0].split(',').forEach(category => allFilters.push(RestaurantHelper.ucfirst(category)))
           }
         })
-        this.filters = helpers.uniqueArray(allFilters)
+        this.filters = RestaurantHelper.uniqueArray(allFilters)
       }
     }
-
+    
   }
 }
 </script>

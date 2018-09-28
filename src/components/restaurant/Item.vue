@@ -3,7 +3,7 @@
     <div class="d-flex">
       
       <div class="logo">
-        <img :src="getlogo" width="150" :alt="name">
+        <ImageWrap :logo_uri="logoUri" :alt="name" :width="150" :hight="150" />
       </div>
       
       <div class="content d-flex flex-column flex-wrap">
@@ -24,7 +24,9 @@
 
 <script>
 import RatingStars from '../common/Stars'
-import helpers from '@/helpers'
+import ImageWrap from '../common/ImageWrap'
+
+import RestaurantHelper from '@/helpers/restaurant'
 
 export default {
   name: 'restaurant-item',
@@ -62,18 +64,16 @@ export default {
   },
   
   components: {
-    RatingStars
+    RatingStars,
+    ImageWrap
   },
 
   computed: {
-    getlogo () {
-      return this.logoUri
-    },
     addressFormatted () {
-      return helpers.formatAddress(this.address)
+      return RestaurantHelper.formatAddress(this.address)
     },
     categoriesFormatted () {
-      return (this.categories.length) ? this.categories[0].split(',').map(item => helpers.ucfirst(item)).join(' • ') : ''
+      return (this.categories.length) ? RestaurantHelper.formatCategories(this.categories[0].split(',')) : ''
     }
   },
 
@@ -93,7 +93,7 @@ export default {
   text-decoration: none;
   display: block;
   padding: 12px 0;
-  transition: all 250ms ease;
+  transition: all 250ms linear;
   
   &:hover{
     background-color: $light-gray
@@ -110,12 +110,6 @@ export default {
     
     > h2{
       margin: 0
-    }
-  }
-
-  .logo{
-    > img {
-      border-radius: 4px;
     }
   }
   

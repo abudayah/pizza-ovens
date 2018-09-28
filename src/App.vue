@@ -51,7 +51,7 @@ export default {
   
   .title{
     border-bottom: $global-border;
-    margin: 0;
+    margin: 0 0 12px;
     padding-bottom: 10px;
   }
 }
@@ -97,5 +97,47 @@ input, select {
     color: #666;
     margin-right: 12px;
   }
+}
+.price{
+  color: $green;
+  font-weight: bold;
+}
+.btn{
+  background-color: #fff;
+  color: $black;
+  font-weight: bold;
+  border: 0 none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all 250ms linear;
+  
+  &-primary{
+    background-color: $primary-color;
+    color: #fff;
+    
+    &:hover{
+      background-color: darken($primary-color, 8%)
+    }
+  }
+  
+  &:focus{
+    outline: none;
+  }
+  &:active{
+    position: relative;
+    top: 1px
+  }
+}
+.tobeFixed{
+  &.fixed{
+    position: fixed;
+    top: 76px;
+  }
+}
+.loading{
+  background: url('./assets/loading.gif') no-repeat center center;
+  width: 100%;
+  height: 400px;
 }
 </style>
