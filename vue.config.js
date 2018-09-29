@@ -1,4 +1,5 @@
 module.exports = {
+  baseUrl: process.env.NODE_ENV === 'production' ? '/pizza-ovens/' : '/',
   css: {
     loaderOptions: {
       // pass options to sass-loader

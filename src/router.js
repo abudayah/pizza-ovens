@@ -7,7 +7,7 @@ import RestaurantView from '@/components/restaurant/View'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   linkExactActiveClass: 'is-active',
   routes: [
     {

@@ -1,7 +1,16 @@
 {
   "name": "pizza-ovens",
   "version": "0.1.0",
-  "private": true,
+  "homepage": "http://abudayah.github.io/pizza-ovens",
+  "author": {
+    "name": "Anas Abudayah",
+    "email": "anas.abudayah@gmail.com",
+    "url": "https://www.linkedin.com/in/abudayah/"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/abudayah/pizza-ovens.git"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
