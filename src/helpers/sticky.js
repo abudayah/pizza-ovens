@@ -2,7 +2,7 @@ import throttle from 'lodash/throttle'
 
 let onScroll, elements
 const delta = 75
-const latency = 100
+const latency = 50
 
 const Sticky = {
   init () {

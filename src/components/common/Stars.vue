@@ -1,5 +1,5 @@
 <template>
-  <span class="stars align-self-start">
+  <span class="stars">
     {{stars}}<span :style="average">{{stars}}</span>
   </span>
 </template>
@@ -37,6 +37,7 @@ export default {
   font-size: 18px;
   color: #ccc;
   cursor: default;
+  align-self: flex-start;
   
   > span {
     position: absolute;

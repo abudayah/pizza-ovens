@@ -2,7 +2,7 @@
   <header id="app-header">
     <div class="container-wide">
       
-      <div class="d-flex flex-row justify-content-between">
+      <div class="header-row d-flex flex-row justify-content-between">
         <div class="align-self-center">
           <router-link class="logo" :to="{ path: '/'}">
             <img :src="logo" alt="PizzaOvens">
@@ -60,15 +60,6 @@ export default {
   width: 100%;
   z-index: 100;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  
-  a {
-    color: $black;
-    text-decoration: none;
-    
-    &:hover{
-      text-decoration: underline;
-    }
-  }
   
   .logo{
     display: inline-block;

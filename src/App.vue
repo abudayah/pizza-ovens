@@ -37,12 +37,34 @@ export default {
   background-color: $light-gray;
   font-size: 14px;
 }
+
+a {
+  color: $black;
+  text-decoration: none;
+  
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+input, select {
+  border: $global-border;
+  padding: 8px 15px;
+  width: 100%;
+  height: 34px;
+  
+  &:focus{
+    outline: none;
+  }
+}
+
 .main-content{
   padding: 60px 0 40px;
 }
 .container-wide{
   padding: 0 30px;
 }
+
 .box{
   border: $global-border;
   background-color: #fff;
@@ -55,16 +77,7 @@ export default {
     padding-bottom: 10px;
   }
 }
-input, select {
-  border: $global-border;
-  padding: 8px 15px;
-  width: 100%;
-  height: 34px;
-  
-  &:focus{
-    outline: none;
-  }
-}
+
 .list-pips{
   margin: 0;
   padding: 0;
@@ -90,6 +103,7 @@ input, select {
     }
   }
 }
+
 [data-label] {
   &::before{
     content: attr(data-label);
@@ -98,10 +112,14 @@ input, select {
     margin-right: 12px;
   }
 }
+
+// Global Price tag
 .price{
   color: $green;
   font-weight: bold;
 }
+
+// Global buttons style
 .btn{
   background-color: #fff;
   color: $black;
@@ -129,12 +147,16 @@ input, select {
     top: 1px
   }
 }
+
+// Make anything fixed
 .tobeFixed{
   &.fixed{
     position: fixed;
-    top: 76px;
+    top: 76px; // header hight + padding
   }
 }
+
+// Yummy loading block
 .loading{
   background: url('./assets/loading.gif') no-repeat center center;
   width: 100%;

@@ -14,6 +14,7 @@ export default {
 #hero-box{
   height: 130px;
   background: url('../../assets/hero-image.jpg') center center $black;
+  background-size: 100%;
   margin-bottom: 15px;
   z-index: 1;
   position: relative;

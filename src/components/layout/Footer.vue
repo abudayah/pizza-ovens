@@ -17,6 +17,7 @@ export default {
   margin-top: 40px;
   padding: 30px 0;
   text-align: center;
+  color: #666;
   font-size: 14px;
   border-top: $global-border;
 }

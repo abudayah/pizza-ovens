@@ -1,7 +1,7 @@
 <template>
-  <aside id="filters-sidebar" class="box tobeFixed">
+  <aside class="box tobeFixed">
     <h4 class="title">Fitler by</h4>
-    <ul class="list-filters">
+    <ul class="filters">
       <li><router-link :to="{ path: '/'}">Show All</router-link></li>
       <li v-for="(category, key) in sortedFilters" :key="key">
         <router-link :to="{ path: '/', query: { filterBy: category }}">
@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.list-filters{
+.filters{
   margin: 15px 0 0;
   padding: 0;
   list-style: none;
