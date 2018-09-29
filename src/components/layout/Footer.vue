@@ -1,7 +1,7 @@
 <template>
   <footer id="app-footer">
     <div class="container-wide">
-      &copy; Pizza Ovens - Anas Abudayah <a target="_blank" href="http://github.com/abudayah/pizza-ovens">github.com/abudayah</a>
+      &copy; Pizza Ovens - Anas Abudayah <a target="_blank" href="http://github.com/abudayah/pizza-ovens">github.com/abudayah/pizza-ovens</a>
     </div>
   </footer>
 </template>
