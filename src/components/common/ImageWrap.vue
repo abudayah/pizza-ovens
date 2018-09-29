@@ -1,6 +1,6 @@
 <template>
   <img
-    :src="imageSource"
+    src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=='
     :alt="alt"
     :width="width"
     :hight="hight"
@@ -39,9 +39,14 @@ export default {
     this.lazyload()
   },
   
+  updated: function () {
+    this.$nextTick(() => {
+      this.$el.src = this.logo_uri
+    })
+  },
+  
   data () {
     return {
-      imageSource: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
       lazyLoaded: false
     }
   },
@@ -60,12 +65,12 @@ export default {
     },
     
     loadImage () {
-      this.imageSource = this.logo_uri
+      this.$el.src = this.logo_uri
       this.lazyLoaded = true
     },
     
     loadDefault () {
-      this.imageSource = `https://via.placeholder.com/${this.width}x${this.hight}/DEDEDE/999999?text=Yummy!`
+      this.$el.src = `https://via.placeholder.com/${this.width}x${this.hight}/DEDEDE/999999?text=Yummy!`
     }
   }
 }

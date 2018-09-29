@@ -115,7 +115,7 @@ export default {
       }
     },
     addToCart (item) {
-      console.log(item.id)
+      console.log(item.id) // eslint-disable-line no-console
       this.order_summery.push(item.name)
     }
   },
