@@ -1,12 +1,12 @@
 <template>
   <router-link class="item" :to="{ name: 'RestaurantView', params: { id: this.id }}">
-    <div class="d-flex">
+    <div class="row">
       
-      <div class="logo">
+      <div class="col col-sm-2">
         <ImageWrap :logo_uri="logoUri" :alt="name" :width="150" :hight="150" />
       </div>
       
-      <div class="content d-flex flex-column flex-wrap">
+      <div class="content col-md-10">
         <h2>{{ name }}</h2>
         <p class="categories">{{ categoriesFormatted }}</p>
         <rating-stars :rating='rating' />
@@ -106,7 +106,8 @@ export default {
     margin: 12px 0;
   }
   .content{
-    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
     
     > h2{
       margin: 0

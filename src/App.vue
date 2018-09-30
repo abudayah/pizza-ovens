@@ -63,6 +63,10 @@ input, select {
 }
 .container-wide{
   padding: 0 30px;
+  
+  @media(max-width: 768px) {
+    padding: 0 15px;
+  }
 }
 
 .box{
@@ -70,6 +74,7 @@ input, select {
   background-color: #fff;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.07);
   padding: 15px;
+  margin-bottom: 15px;
   
   .title{
     border-bottom: $global-border;
@@ -151,8 +156,10 @@ input, select {
 // Make anything fixed
 .tobeFixed{
   &.fixed{
-    position: fixed;
-    top: 76px; // header hight + padding
+    @media(min-width: 768px) {
+      position: fixed;
+      top: 76px; // header hight + padding
+    }
   }
 }
 

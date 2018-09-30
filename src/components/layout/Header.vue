@@ -2,20 +2,20 @@
   <header id="app-header">
     <div class="container-wide">
       
-      <div class="header-row d-flex flex-row justify-content-between">
+      <div class="d-flex flex-row justify-content-between">
         <div class="align-self-center">
           <router-link class="logo" :to="{ path: '/'}">
             <img :src="logo" alt="PizzaOvens">
           </router-link>
         </div>
         
-        <div class="align-self-center">
+        <div class="align-self-center d-none d-sm-block">
           <div class="current-address " data-label="DELIVERING TO :">
             <a href="javascript:;">1193 Robson Street, Vancouver V6E 4H6</a>
           </div>
         </div>
         
-        <div class="ml-md-auto align-self-center">
+        <div class="ml-md-auto align-self-center d-none d-sm-block">
           <ul class="list-pips">
             <li><a href="javascipt:;">Account</a></li>
             <li><a href="javascipt:;">Orders</a></li>

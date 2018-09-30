@@ -14,7 +14,7 @@ export default {
 #hero-box{
   height: 130px;
   background: url('../../assets/hero-image.jpg') center center $black;
-  background-size: 100%;
+  background-size: cover;
   margin-bottom: 15px;
   z-index: 1;
   position: relative;
@@ -25,6 +25,13 @@ export default {
     margin: 0;
     padding-top: 40px;
     text-shadow: 1px 2px 2px rgba(0,0,0,0.1);
+    
+    @media(max-width: 768px) {
+      text-align: center;
+      font-size: 30px;
+      padding-top: 48px;
+      text-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
   }
 }
 </style>

@@ -5,7 +5,7 @@
     :width="width"
     :hight="hight"
     @error="loadDefault"
-    :class="{ 'lazy-loaded': lazyLoaded, 'restaurant-logo': true }"
+    :class="{ 'lazy-loaded': lazyLoaded, 'image-wrapper': true }"
   />
 </template>
 
@@ -77,10 +77,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.restaurant-logo {
+.image-wrapper {
   border-radius: 4px;
   opacity: 0;
   transition: opacity 250ms linear;
+  
+  @media (min-width: 768px) {
+    max-width: 100%;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+  }
   
   &.lazy-loaded{
     opacity: 1;
