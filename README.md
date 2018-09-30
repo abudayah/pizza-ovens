@@ -5,6 +5,9 @@
 <p align="center"><i>VueJs v2</i></p>
 
 ---
+> NOTE: You might have an error on console `net::ERR_CERT_AUTHORITY_INVALID` to solve this go to:<br>
+> (chrome) https://mockapi.pizza.de/v1/auth then `ADVANCE` then `Proceed to mockapi.pizza.de (unsafe)`
+---
 
 ## Project setup
 ```
