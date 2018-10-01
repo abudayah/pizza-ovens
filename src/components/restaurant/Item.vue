@@ -9,7 +9,7 @@
       <div class="content col-md-10">
         <h2>{{ name }}</h2>
         <p class="categories">{{ categoriesFormatted }}</p>
-        <rating-stars :rating='rating' />
+        <RatingStars :rating='rating' />
         <p v-show="randOffer()" class="badge-discount">50% OFF on all orders</p>
         <ul class="list-pips">
           <li>{{addressFormatted}}</li>
@@ -23,13 +23,13 @@
 </template>
 
 <script>
-import RatingStars from '../common/Stars'
-import ImageWrap from '../common/ImageWrap'
+import RatingStars from '@/components/common/Stars'
+import ImageWrap from '@/components/common/ImageWrap'
 
 import RestaurantHelper from '@/helpers/restaurant'
 
 export default {
-  name: 'restaurant-item',
+  name: 'RestaurantItem',
   props: {
     id: {
       type: String,

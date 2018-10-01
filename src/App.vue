@@ -1,25 +1,25 @@
 <template>
   <div id="pizza-ovens-app">
-    <Header/>
+    <AppHeader/>
     <div class="main-content">
       <Hero/>
       <router-view/>
     </div>
-    <Footer/>
+    <AppFooter/>
   </div>
 </template>
 
 <script>
-import Header from '@/components/layout/Header'
+import AppHeader from '@/components/layout/Header'
 import Hero from '@/components/layout/Hero'
-import Footer from '@/components/layout/Footer'
+import AppFooter from '@/components/layout/Footer'
 
 export default {
   name: 'app',
   components: {
-    Header,
+    AppHeader,
     Hero,
-    Footer
+    AppFooter
   }
 }
 </script>

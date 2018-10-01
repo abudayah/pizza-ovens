@@ -32,11 +32,11 @@
                 <h2>{{section.name}}</h2>
                 <ul class="list">
                   <li class="item d-flex justify-content-between" v-for="item in section.items" :key="item.id">
-                    <div class="">
+                    <div>
                       <h4>{{item.name}}</h4>
                       <p>{{item.description}}</p>
                     </div>
-                    <div class="">
+                    <div>
                       <span class="price">{{item.price}}€</span>
                       <button class="btn btn-primary" type="button" name="button" @click="addToCart(item)">+ Add</button>
                     </div>
@@ -49,10 +49,25 @@
           
           <div class="col-md-3">
             <div class="box tobeFixed">
-              <h4 class="title">Order Summery</h4>
-              <div v-show="!order_summery.length">You haven't selected anything yet!</div>
-              <ul class="order-summery" v-show="order_summery.length">
-                <li v-for="(item, key) in order_summery" :key="key">{{item}}</li>
+              <h4 class="title d-flex justify-content-between">
+                <div>
+                  Order Summery
+                </div>
+                <div class="price">
+                  {{totalPrice}}
+                </div>
+              </h4>
+              <div v-show="!orderSummery.length">You haven't selected anything yet!</div>
+              <ul class="order-summery" v-show="orderSummery.length">
+                <li v-for="(item, key) in orderSummery" :key="key" class="d-flex justify-content-between">
+                  <div class="">
+                    <h4>{{item.name}}</h4>
+                    <span class="price">{{Number.parseFloat(item.total).toFixed(2)}}€</span>
+                  </div>
+                  <div>
+                    ({{item.quantity}})
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -68,15 +83,16 @@
 </template>
 
 <script>
-import ImageWrap from '../common/ImageWrap'
-import RatingStars from '../common/Stars'
+import ImageWrap from '@/components/common/ImageWrap'
+import RatingStars from '@/components/common/Stars'
 
 import Sticky from '@/helpers/sticky'
 import RestaurantHelper from '@/helpers/restaurant'
 import RestaurantService from '@/services/restaurant.service'
+import { mapActions } from 'vuex'
 
 export default {
-  name: 'restaurant-view',
+  name: 'RestaurantView',
   components: {
     RatingStars,
     ImageWrap
@@ -90,8 +106,7 @@ export default {
   data () {
     return {
       id: this.$route.params.id,
-      restaurant: null,
-      order_summery: []
+      restaurant: null
     }
   },
   
@@ -101,10 +116,19 @@ export default {
     },
     categoriesFormatted () {
       return (this.restaurant.info.categories) ? RestaurantHelper.formatCategories(this.restaurant.info.categories) : ''
+    },
+    orderSummery () {
+      return this.$store.getters.cartItems
+    },
+    totalPrice () {
+      return `${this.$store.getters.grandTotal}€`
     }
   },
   
   methods: {
+    ...mapActions([
+      'addToCart'
+    ]),
     getView () {
       if (typeof this.id !== 'undefined') {
         RestaurantService.get(this.id).then(response => {
@@ -113,10 +137,6 @@ export default {
           Sticky.init()
         })
       }
-    },
-    addToCart (item) {
-      console.log(item.id) // eslint-disable-line no-console
-      this.order_summery.push(item.name)
     }
   },
   
@@ -181,6 +201,10 @@ export default {
   > li {
     border-bottom: 1px dotted #dedede;
     padding: 10px 0;
+    
+    h4{
+      margin: 0 0 3px
+    }
     
     &:last-child{
       border: 0 none;

@@ -19,7 +19,7 @@
           <ul class="list-pips">
             <li><a href="javascipt:;">Account</a></li>
             <li><a href="javascipt:;">Orders</a></li>
-            <li><a href="javascipt:;" data-count="3">Cart</a></li>
+            <li><a href="javascipt:;" :data-count="cartCount">Cart</a></li>
             <li><a href="javascipt:;">Logout</a></li>
           </ul>
         </div>
@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  name: 'Header',
+  name: 'AppHeader',
   data () {
     return {
       isFixed: false
@@ -40,6 +40,9 @@ export default {
   computed: {
     logo () {
       return (this.isRetina) ? require('@/assets/logo-retina.png') : require('@/assets/logo.png')
+    },
+    cartCount () {
+      return this.$store.getters.cartCount
     }
   },
   methods: {

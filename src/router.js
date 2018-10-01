@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import RestaurantList from '@/components/restaurant/List'
-import RestaurantView from '@/components/restaurant/View'
+import RestaurantList from '@/views/List'
+import RestaurantView from '@/views/View'
 
 Vue.use(Router)
 

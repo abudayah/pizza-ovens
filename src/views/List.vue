@@ -27,7 +27,7 @@
                 </div>
               </div>
               
-              <restaurant-item v-for="(item, key) in restaurants"
+              <RestaurantItem v-for="(item, key) in restaurants"
                 :id="item.id"
                 :name="item.general.name"
                 :logoUri="item.general.logo_uri"
@@ -35,7 +35,7 @@
                 :rating="item.rating"
                 :address="item.address"
                 :key="key">
-              </restaurant-item>
+              </RestaurantItem>
             
           </div>
         </div>
@@ -51,8 +51,8 @@
 </template>
 
 <script>
-import RestaurantItem from './Item'
-import Filters from './Filters'
+import RestaurantItem from '@/components/restaurant/Item'
+import Filters from '@/components/restaurant/Filters'
 
 import RestaurantHelper from '@/helpers/restaurant'
 import RestaurantService from '@/services/restaurant.service'

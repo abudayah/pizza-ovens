@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'rating-stars',
+  name: 'RatingStars',
   props: {
     rating: {
       type: Object,
