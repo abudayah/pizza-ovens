@@ -1,8 +1,8 @@
 import throttle from 'lodash/throttle'
 
 let onScroll, elements
-const delta = 75
-const latency = 50
+const latency = 200
+const delta = 60
 
 const Sticky = {
   init () {
@@ -20,7 +20,7 @@ const Sticky = {
       elements.forEach(el => {
         const elRect = el.getBoundingClientRect()
         
-        if (elRect.top <= window.scrollY + delta) {
+        if (window.scrollY >= elRect.top + delta) {
           el.classList.add('fixed')
           el.style.width = elRect.width + 'px'
         } else {

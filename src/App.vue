@@ -155,10 +155,14 @@ input, select {
 
 // Make anything fixed
 .tobeFixed{
+  margin-top: 0;
+  
   &.fixed{
     @media(min-width: 768px) {
       position: fixed;
-      top: 76px; // header hight + padding
+      top: 0;
+      margin-top: 75px;  // header hight + padding
+      transition: margin-top 250ms ease-in-out;
     }
   }
 }
