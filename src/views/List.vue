@@ -9,7 +9,7 @@
         </div>
         <div class="col-md-9">
           <div class="box">
-            <div id="restaurantList" class="restaurant-list">
+            <div id="restaurant-list" class="restaurant-list">
               
               <div class="filters">
                 <div class="row">

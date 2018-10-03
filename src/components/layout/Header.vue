@@ -10,7 +10,7 @@
         </div>
         
         <div class="align-self-center d-none d-sm-block">
-          <div class="current-address " data-label="DELIVERING TO :">
+          <div class="current-address" data-label="DELIVERING TO :">
             <a href="javascript:;">1193 Robson Street, Vancouver V6E 4H6</a>
           </div>
         </div>
@@ -19,7 +19,7 @@
           <ul class="list-pips">
             <li><a href="javascipt:;">Account</a></li>
             <li><a href="javascipt:;">Orders</a></li>
-            <li><a href="javascipt:;" :data-count="cartCount">Cart</a></li>
+            <li><a href="javascipt:;" :data-count="cartCount" data-test="cartCount">Cart</a></li>
             <li><a href="javascipt:;">Logout</a></li>
           </ul>
         </div>

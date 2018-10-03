@@ -2,27 +2,33 @@
 
 <p align="center">Experimental food delivery App</p>
 <p align="center"><a href="https://abudayah.github.io/pizza-ovens" target="_blank">abudayah.github.io/pizza-ovens</a></p>
-<p align="center">VueJs v2</p>
+<p align="center">VueJs v2, Vuex, Jest, Cypress</p>
 <p align="center">:rocket: Page Load: ~ 0.9s - 1.20s</p>
+
+<p align="center">
+<img src="https://img.shields.io/badge/Page_Load-0.9--1.2s-brightgreen.svg" alt="Page Load" /> 
+<img src="https://img.shields.io/badge/code_style-standard-yellow.svg" alt="JavaScript Style Guide" />
+</p>
 
 ---
 > NOTE: You might have an error on console `net::ERR_CERT_AUTHORITY_INVALID` to solve this go to:<br>
 > (chrome) https://mockapi.pizza.de/v1/auth then `ADVANCE` then `Proceed to mockapi.pizza.de (unsafe)`
 ---
 
-#### Project setup
+### Project setup
+Feel free to use `NPM` or `YARN`
 ```
-yarn install || npm install
-```
-
-#### Compiles and hot-reloads for development
-```
-yarn serve || npm run serve
+yarn install
 ```
 
-#### Compiles and minifies for production
+### Compiles and hot-reloads for development
 ```
-yarn build || npm run build
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
 ```
 
 Deploy to github pages
@@ -30,9 +36,16 @@ Deploy to github pages
 sh deploy.sh
 ```
 
-#### Test
+### Test
+
+Unit Testing:
 ```
-yarn test || npm run test (--coverage)
+yarn test:unit (--coverage)
+```
+
+E2E Testing:
+```
+yarn test:e23
 ```
 
 <br>

@@ -1,5 +1,5 @@
 <template>
-  <section class="restaurant-view">
+  <section id="restaurant-view">
     <template v-if="restaurant">
       
       <div class="container-wide">
@@ -26,7 +26,7 @@
           </div>
           
           <div class="col-md-6">
-            <div class="box">
+            <div id="menu-list" class="box">
 
               <div class="menu-section" v-for="(section, key) in restaurant.sections" :key="key">
                 <h2>{{section.name}}</h2>
@@ -38,7 +38,7 @@
                     </div>
                     <div>
                       <span class="price">{{item.price}}€</span>
-                      <button class="btn btn-primary" type="button" name="button" @click="addToCart(item)">+ Add</button>
+                      <button data-test="addToCartBtn" class="btn btn-primary" type="button" name="button" @click="addToCart(item)">+ Add</button>
                     </div>
                   </li>
                 </ul>
@@ -48,7 +48,7 @@
           </div>
           
           <div class="col-md-3">
-            <div class="box tobeFixed">
+            <div id="order-summery" class="box tobeFixed">
               <h4 class="title d-flex justify-content-between">
                 <div>
                   Order Summery
@@ -58,9 +58,9 @@
                 </div>
               </h4>
               <div v-show="!orderSummery.length">You haven't selected anything yet!</div>
-              <ul class="order-summery" v-show="orderSummery.length">
+              <ul data-test="orderSummeryList" class="order-summery-list" v-show="orderSummery.length">
                 <li v-for="(item, key) in orderSummery" :key="key" class="d-flex justify-content-between">
-                  <div class="">
+                  <div>
                     <h4>{{item.name}}</h4>
                     <span class="price">{{Number.parseFloat(item.total).toFixed(2)}}€</span>
                   </div>
@@ -193,7 +193,7 @@ export default {
     }
   }
 }
-.order-summery{
+.order-summery-list{
   margin: 0;
   padding: 0;
   list-style: none;

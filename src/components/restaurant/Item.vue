@@ -1,5 +1,5 @@
 <template>
-  <router-link class="item" :to="{ name: 'RestaurantView', params: { id: this.id }}">
+  <router-link data-test="restaurantItemLink" class="item" :to="{ name: 'RestaurantView', params: { id: this.id }}">
     <div class="row">
       
       <div class="col col-sm-2">
