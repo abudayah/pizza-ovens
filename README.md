@@ -6,8 +6,7 @@
 <p align="center">:rocket: Page Load: ~ 0.9s - 1.20s</p>
 
 <p align="center">
-<img src="https://img.shields.io/badge/Page_Load-0.9--1.2s-brightgreen.svg" alt="Page Load" /> 
-<img src="https://img.shields.io/badge/code_style-standard-yellow.svg" alt="JavaScript Style Guide" />
+<a href="https://standardjs.com/" target="_blank"><img src="https://img.shields.io/badge/code_style-standard-yellow.svg" alt="JavaScript Style Guide" /></a>
 </p>
 
 ---
@@ -45,7 +44,7 @@ yarn test:unit (--coverage)
 
 E2E Testing:
 ```
-yarn test:e23
+yarn test:e2e
 ```
 
 <br>
