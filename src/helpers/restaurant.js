@@ -10,7 +10,7 @@ const RestaurantHelper = {
   },
   
   formatCategories (categories) {
-    return categories.map(item => RestaurantHelper.ucfirst(item)).join(' • ')
+    return categories.map(item => this.ucfirst(item)).join(' • ')
   },
   
   formatAddress (options) {

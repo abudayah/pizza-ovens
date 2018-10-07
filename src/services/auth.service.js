@@ -2,7 +2,7 @@ import { API_URL } from '@/services/api.configs'
 
 const AuthService = {
   requestToken () {
-    const token = AuthService.getToken()
+    const token = this.getToken()
 
     if (!token) {
       return fetch(`${API_URL}/auth`).then(data => {
@@ -14,8 +14,8 @@ const AuthService = {
   },
 
   refreshToken () {
-    AuthService.destroyToken()
-    return AuthService.requestToken()
+    this.destroyToken()
+    return this.requestToken()
   },
 
   getToken () {

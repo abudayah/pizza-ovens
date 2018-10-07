@@ -1,4 +1,4 @@
-import throttle from 'lodash/throttle'
+import throttle from 'lodash-es/throttle'
 
 let onScroll, elements
 const latency = 200
@@ -7,7 +7,7 @@ const delta = 60
 const Sticky = {
   init () {
     elements = document.querySelectorAll('.tobeFixed')
-    onScroll = throttle(() => { Sticky.handleScroll() }, latency)
+    onScroll = throttle(() => { this.handleScroll() }, latency)
     window.addEventListener('scroll', onScroll, false)
   },
   
